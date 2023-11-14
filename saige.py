@@ -28,6 +28,17 @@ class SAIGE:
 
         self._setup_utils()
 
+    def _download_hf_model(self):
+        # Define model ID from Hugging Face
+        model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
+        
+        # Download and load the model and tokenizer
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype="auto", low_cpu_mem_usage=True)
+        print("Model downloaded and loaded successfully.")
+
+    
+
     def _prompt_util(self):
         self.prompt = PromptTemplate.from_template(template=PROMPT_TEMPLATE)
 
@@ -67,6 +78,8 @@ class SAIGE:
 
 
     def _setup_utils(self):
+        self._download_hf_model()
+
 
         self.embeddings = HuggingFaceEmbeddings(
             model_name=self.embedder,
