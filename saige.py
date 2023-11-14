@@ -45,9 +45,9 @@ class SAIGE:
         model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
         
         # Download and load the model and tokenizer
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype="auto", low_cpu_mem_usage=True)
-        print("Model downloaded and loaded successfully.")
+       # self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+       # self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype="auto", low_cpu_mem_usage=True)
+        #print("Model downloaded and loaded successfully.")
         self.tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
         self.model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=hf_token)
 
