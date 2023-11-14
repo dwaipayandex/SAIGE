@@ -7,8 +7,27 @@ from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from config import *
 import chainlit as cl
+import requests
 
 class SAIGE:
+
+    # URL of the file to be downloaded
+    url = "https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/RULi7mYWhJNrGC3FKqWvjw9IfJb2/11a4e468-c569-431a-ab24-d4a426ae5d72?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20231114%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20231114T093118Z&X-Amz-Expires=43200&X-Amz-Signature=5661011d9e24a030b0858606fff8320e896935fb902eb01da5f72635b991ed24&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22llama-2-7b-chat.ggmlv3.q8_0.bin%22"
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        file_name = "llama-2-7b-chat.ggmlv3.q8_0.bin"
+    # Save the file
+        with open(file_name, 'wb') as file:
+        file.write(response.content)
+        print(f"File downloaded successfully as {file_name}")
+    else:
+        print(f"Error: Unable to download the file. Status code: {response.status_code}")
+
+    
 
     def __init__(self) -> None:
 
