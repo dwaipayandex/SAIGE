@@ -7,6 +7,19 @@ from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from config import *
 import chainlit as cl
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
+
+
+
+# Replace 'your_token_here' with your actual Hugging Face token
+hf_token = "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"
+
+self.tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
+self.model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=hf_token)
+
+
+
 
 class SAIGE:
 
