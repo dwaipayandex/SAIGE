@@ -15,8 +15,7 @@ model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
 # Replace 'your_token_here' with your actual Hugging Face token
 hf_token = "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"
 
-self.tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
-self.model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=hf_token)
+
 
 
 
@@ -49,6 +48,8 @@ class SAIGE:
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype="auto", low_cpu_mem_usage=True)
         print("Model downloaded and loaded successfully.")
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
+        self.model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=hf_token)
 
     
 
