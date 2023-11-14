@@ -22,8 +22,8 @@ class SAIGE:
         file_name = "llama-2-7b-chat.ggmlv3.q8_0.bin"
     # Save the file
         with open(file_name, 'wb') as file:
-        file.write(response.content)
-        print(f"File downloaded successfully as {file_name}")
+            file.write(response.content)
+            print(f"File downloaded successfully as {file_name}")
     else:
         print(f"Error: Unable to download the file. Status code: {response.status_code}")
 
