@@ -87,7 +87,7 @@ class SAIGE:
 
     def _setup_utils(self):
         
-        bin_url = "https://cdn-lfs.huggingface.co/repos/30/e3/30e3aca7233f7337633262ff6d59dd98559ecd8982e7419b39752c8d0daae1ca/3bfdde943555c78294626a6ccd40184162d066d39774bd2c98dae24943d32cc3"
+        bin_url = "https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/RULi7mYWhJNrGC3FKqWvjw9IfJb2/11a4e468-c569-431a-ab24-d4a426ae5d72?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20231114%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20231114T093118Z&X-Amz-Expires=43200&X-Amz-Signature=5661011d9e24a030b0858606fff8320e896935fb902eb01da5f72635b991ed24&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22llama-2-7b-chat.ggmlv3.q8_0.bin%22"
         self._download_bin_file(bin_url, "llama-2-7b-chat.ggmlv3.q8_0.bin")
 
         self.embeddings = HuggingFaceEmbeddings(
