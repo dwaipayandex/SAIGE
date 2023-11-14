@@ -7,12 +7,6 @@ from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from config import *
 import chainlit as cl
-import requests
-
-
-
-
-
 
 class SAIGE:
 
@@ -33,19 +27,6 @@ class SAIGE:
         self.repetition_penalty = REPETITION_PENALTY
 
         self._setup_utils()
-
-    def _download_bin_file(self, url, save_path):
-        """
-        Downloads a binary file from a given URL and saves it to the specified path.
-        """
-        response = requests.get(url, allow_redirects=True)
-        if response.status_code == 200:
-            with open(save_path, 'wb') as file:
-                file.write(response.content)
-        else:
-            raise Exception(f"Failed to download file: {response.status_code}")
-
-    
 
     def _prompt_util(self):
         self.prompt = PromptTemplate.from_template(template=PROMPT_TEMPLATE)
@@ -86,9 +67,6 @@ class SAIGE:
 
 
     def _setup_utils(self):
-        
-        bin_url = "https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/RULi7mYWhJNrGC3FKqWvjw9IfJb2/11a4e468-c569-431a-ab24-d4a426ae5d72?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20231114%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20231114T093118Z&X-Amz-Expires=43200&X-Amz-Signature=5661011d9e24a030b0858606fff8320e896935fb902eb01da5f72635b991ed24&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22llama-2-7b-chat.ggmlv3.q8_0.bin%22"
-        self._download_bin_file(bin_url, "llama-2-7b-chat.ggmlv3.q8_0.bin")
 
         self.embeddings = HuggingFaceEmbeddings(
             model_name=self.embedder,
