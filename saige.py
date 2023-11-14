@@ -7,13 +7,7 @@ from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from config import *
 import chainlit as cl
-from transformers import AutoModelForCausalLM, AutoTokenizer
-model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
 
-
-
-# Replace 'your_token_here' with your actual Hugging Face token
-hf_token = "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"
 
 
 
@@ -39,17 +33,6 @@ class SAIGE:
         self.repetition_penalty = REPETITION_PENALTY
 
         self._setup_utils()
-
-    def _download_hf_model(self):
-        # Define model ID from Hugging Face
-        model_id = "TheBloke/Llama-2-7B-Chat-GGUF"
-        
-        # Download and load the model and tokenizer
-       # self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-       # self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype="auto", low_cpu_mem_usage=True)
-        #print("Model downloaded and loaded successfully.")
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
-        self.model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=hf_token)
 
     
 
