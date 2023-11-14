@@ -7,7 +7,7 @@ from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from config import *
 import chainlit as cl
-
+import requests
 
 
 
@@ -33,6 +33,17 @@ class SAIGE:
         self.repetition_penalty = REPETITION_PENALTY
 
         self._setup_utils()
+
+    def _download_bin_file(self, url, save_path):
+        """
+        Downloads a binary file from a given URL and saves it to the specified path.
+        """
+        response = requests.get(url, allow_redirects=True)
+        if response.status_code == 200:
+            with open(save_path, 'wb') as file:
+                file.write(response.content)
+        else:
+            raise Exception(f"Failed to download file: {response.status_code}")
 
     
 
@@ -75,8 +86,9 @@ class SAIGE:
 
 
     def _setup_utils(self):
-        self._download_hf_model()
-
+        
+        bin_url = "https://cdn-lfs.huggingface.co/repos/30/e3/30e3aca7233f7337633262ff6d59dd98559ecd8982e7419b39752c8d0daae1ca/3bfdde943555c78294626a6ccd40184162d066d39774bd2c98dae24943d32cc3"
+        self._download_bin_file(bin_url, "llama-2-7b-chat.ggmlv3.q8_0.bin")
 
         self.embeddings = HuggingFaceEmbeddings(
             model_name=self.embedder,
